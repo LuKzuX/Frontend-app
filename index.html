@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index</title>
+  </head>
+  <body>
+    <form action="/user" method="POST">
+      <h3>Form</h3>
+      <label> Name: </label>
+      <input type="text" name="name" class="form-input" autocomplete="false" />
+      <small class="form-alert"></small>
+      <button type="submit" class="submit-btn">submit</button>
+      <div class="result"></div>
+    </form>
+
+    <script src="C:\Users\Lucas\Desktop\post\data.js"></script>
+    <script>
+      src = "https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js";
+      integrity =
+        "sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==";
+      crossorigin = "anonymous";
+    </script>
+    <script>
+      const result = document.querySelector(".result");
+      const fecthPeople = async () => {
+        try {
+          const peopleData = people.map((person) => {
+            return `<h5>${person.name}</h5>`;
+          });
+          result.innerHTML = peopleData.join("");
+        } catch (error) {
+          result.innerHTML = `<div class="alert alert-danger">Can't Fetch Data</div>`;
+        }
+      };
+
+      const btn = document.querySelector(".submit-btn");
+      const input = document.querySelector(".form-input");
+      const formAlert = document.querySelector(".form-alert");
+
+      btn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const nameValue = input.value;
+        if (nameValue == "") {
+          formAlert.innerHTML = "PLEASE WRITE SOME NAME";
+        } else {
+          const h5 = document.createElement("h5");
+          h5.textContent = nameValue;
+          result.appendChild(h5);
+        }
+      });
+
+      fecthPeople();
+    </script>
+  </body>
+</html>
