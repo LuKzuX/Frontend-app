@@ -16,10 +16,10 @@
       <div class="result"></div>
     </form>
 
-    <script src="C:\Users\Lucas\Desktop\post\data.js"></script>
+    <script src="./data.js"></script> //if you get an error i'm certain that's because the file path'
     <script>
       const result = document.querySelector(".result");
-      const fecthPeople = async () => {
+      const fecthPeople = () => {
         try {
           const peopleData = people.map((person) => {
             return `<h5>${person.name}</h5>`;
@@ -33,16 +33,17 @@
       const btn = document.querySelector(".submit-btn");
       const input = document.querySelector(".form-input");
       const formAlert = document.querySelector(".form-alert");
+      let id = people[2].id;
 
-      btn.addEventListener("click", async (e) => {
+      btn.addEventListener("click", (e) => {
         e.preventDefault();
         const nameValue = input.value;
         if (nameValue == "") {
           formAlert.innerHTML = "PLEASE WRITE SOME NAME";
         } else {
-          const h5 = document.createElement("h5");
-          h5.textContent = nameValue;
-          result.appendChild(h5);
+          people[people.length] = { id, name: nameValue };
+          id++;
+          fecthPeople();
         }
       });
 
@@ -50,5 +51,3 @@
     </script>
   </body>
 </html>
-
-//'lost in life, no way to go... thank you'//
